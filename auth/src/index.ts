@@ -25,7 +25,7 @@ app.use(errorHandler);
 
 const startMongo = async () => {
   try {
-    await mongoose.connect('mongodb://auth-mongo-srv:27107/auth');
+    await mongoose.connect('mongodb://auth-mongo-srv:27017/auth');
     console.log('Connected to MongoDB');
   } catch (err) {
     console.error(err);
