@@ -32,7 +32,7 @@ router.post(
       console.log('User exists');
       throw new BadRequestError('User already exists');
     }
-    // Hash password
+    // Hash password (done in user model)
 
     // Create new User and save to DB
     const user = User.build({ email, password });
