@@ -1,3 +1,4 @@
+import { NotFoundError } from './errors/not-found-error';
 import express from 'express';
 import { json } from 'body-parser';
 import { currentUserRouter } from './routes/current-user';
@@ -12,6 +13,11 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(signupRouter);
+
+app.all('*', (req, res) => {
+  throw new NotFoundError();
+});
+
 app.use(errorHandler);
 
 app.listen(3000, () => {
