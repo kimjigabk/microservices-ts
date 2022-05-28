@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
+import { BadRequestError } from '../errors/bad-request-error';
 // import { DatabaseConnectionError } from '../errors/database-connection-error';
 import { RequestValidationError } from '../errors/request-validation-error';
 import { User } from '../models/user';
@@ -29,7 +30,7 @@ router.post(
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
       console.log('User exists');
-      return res.send({});
+      throw new BadRequestError('User already exists');
     }
     // Hash password
 
